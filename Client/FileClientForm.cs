@@ -60,8 +60,7 @@ namespace Client
                 bytesReadCount += bytesRead;
             }
             fileStream.Close();
-            Console.WriteLine(bytesReadCount);
-
+            
             byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
             rs.Write(trailer, 0, trailer.Length);
             rs.Close();

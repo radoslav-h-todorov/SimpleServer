@@ -53,10 +53,17 @@ namespace Server
 
             if (context.Request.HttpMethod == "POST")
             {
-                string file = SaveFile(context.Request.ContentEncoding, GetBoundary(context.Request.ContentType), context.Request.InputStream);
+                try
+                {
+                    string file = SaveFile(context.Request.ContentEncoding, GetBoundary(context.Request.ContentType), context.Request.InputStream);
 
-                Console.WriteLine("Upload file: " + file);
-                Return200(context);
+                    Console.WriteLine("Upload file: " + file);
+                    Return200(context);
+                }
+                catch (Exception ex)
+                {
+                    Return500(context, ex);
+                }
             }
             else
             {
@@ -132,7 +139,7 @@ namespace Server
                 }
             }
 
-            // Analyze the headers to get the original filename
+            // Analyze the headers to get the original filename (it is possible also to extract other information...)
             byte[] headersBytes = buffer.Take(startPos).ToArray();
             string[] headersText = enc.GetString(headersBytes).Split(new[] { '\r', '\n' });
             string fileName = "file";

@@ -46,8 +46,6 @@
   <ItemGroup>
     <Compile Include="Converter.cs" />
     <Compile Include="HttpFileServer.cs" />
-    <Compile Include="MultipartHeaderParser.cs" />
-    <Compile Include="MultipartParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
